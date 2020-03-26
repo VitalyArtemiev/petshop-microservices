@@ -40,8 +40,10 @@ class CartService @Autowired constructor(val cartDAO: CartDAO) {
     fun checkout(userID: Int): Boolean {
         //GlobalScope.launch {}
         val cart = getCart(userID)
-        if (cart.purchases.isEmpty())
+        if (cart.purchases.isEmpty()) {
+            logger.info("Trying to checkout with empty cart")
             return false
+        }
 
         return if (confirmPayment()) {
             cartDAO.complete(userID)

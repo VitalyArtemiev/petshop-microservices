@@ -25,34 +25,6 @@ class AuthService @Autowired constructor(val restTemplate: RestTemplate) {
 
     val logger = LoggerFactory.getLogger("AuthLogger")
 
-    /*fun createJWT(user: User, durationDays: Long): String {
-
-    }
-
-    fun verifyToken(token: String): Token {
-
-    }
-
-    //@Throws(UserAlreadyExistsException::class)
-    fun registerUser(nameColumn: String, balance: String, hash: String) {
-
-    }
-
-    //@Throws(AuthFailedException::class)
-    fun authUser(hash: String, salt: String, nameColumn: String): String {
-
-    }
-
-    //@Throws(TokenOutOfDateException::class, AuthFailedException::class)
-    fun checkToken(AToken: String): User {
-
-    }
-
-    //@Throws(TokenOutOfDateException::class, AuthFailedException::class)
-    fun refreshToken(RToken: String): String {
-
-    }*/
-
     fun revokeToken() {
 
     }
@@ -91,20 +63,6 @@ class AuthService @Autowired constructor(val restTemplate: RestTemplate) {
         calendar.add(Calendar.SECOND, seconds)
         return calendar.time
     }
-
-    /*fun registerUser(login: String, password: String, role: UserRole, name: String): Boolean {
-        if (login.isBlank() || password.isBlank())
-            return false
-
-        val salt = BCrypt.gensalt()
-        val hash = BCrypt.hashpw(password, salt)
-
-        restTemplate.
-
-        userService.saveUser(login, salt, hash, name, role)
-
-        return true
-    }*/
 
     fun authUser(user: User, password: String): Token? {
         return if (BCrypt.checkpw(password, user.hash)) {
